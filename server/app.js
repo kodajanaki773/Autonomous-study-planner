@@ -16,15 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
   corsOrigins.add('http://127.0.0.1:5173');
 }
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || corsOrigins.has(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Origin is not allowed by CORS.'));
-  },
-  credentials: true,
-}));
+app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json({ limit: '2mb' }));
